@@ -1,6 +1,9 @@
 # 🎄 Advent of Code 2024
 
-Solutions for [Advent of Code](https://adventofcode.com/)
+> [!NOTE]
+> This repo is inspired by Felix Spöttel's excellent Rust template that I used last year - you can find that [here](https://github.com/fspoettel/advent-of-code-rust).
+
+Solutions for [Advent of Code](https://adventofcode.com/).
 
 ## Setup
 
