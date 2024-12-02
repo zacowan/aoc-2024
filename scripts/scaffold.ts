@@ -30,14 +30,40 @@ const argsSchema = z
 const args = argsSchema.parse(process.argv.slice(2));
 
 await writeFile(path.join(EXAMPLES_DIR, `${args.paddedDay}.txt`), "");
+console.log(
+  'Created empty example file "%s"',
+  path.relative(".", path.join(EXAMPLES_DIR, `${args.paddedDay}.txt`)),
+);
 await writeFile(path.join(INPUTS_DIR, `${args.paddedDay}.txt`), "");
+console.log(
+  'Created empty input file "%s"',
+  path.relative(".", path.join(INPUTS_DIR, `${args.paddedDay}.txt`)),
+);
 
 await mkdir(path.join(SOLUTIONS_DIR, args.paddedDay));
 await writeFile(
   path.join(SOLUTIONS_DIR, `${args.paddedDay}/${args.paddedDay}.test.ts`),
   TEST_TEMPLATE({ day: args.day, paddedDay: args.paddedDay }),
 );
+console.log(
+  'Created test file "%s"',
+  path.relative(
+    ".",
+    path.join(SOLUTIONS_DIR, `${args.paddedDay}/${args.paddedDay}.test.ts`),
+  ),
+);
 await writeFile(
   path.join(SOLUTIONS_DIR, `${args.paddedDay}/${args.paddedDay}.ts`),
   SOLUTION_TEMPLATE({ day: args.day, paddedDay: args.paddedDay }),
+);
+console.log(
+  'Created solution file "%s"',
+  path.relative(
+    ".",
+    path.join(SOLUTIONS_DIR, `${args.paddedDay}/${args.paddedDay}.ts`),
+  ),
+);
+console.log("---");
+console.log(
+  `🎄 Type \`pnpm solve ${args.day.toString()}\` to run your solution.`,
 );

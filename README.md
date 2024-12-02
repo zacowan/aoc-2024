@@ -33,10 +33,10 @@ This project comes with scripts to make problem-solving fun.
 pnpm scaffold <day>
 
 # output:
-# Created solution file "src/solutions/01/01.ts"
-# Created test file "src/solutions/01/01.test.ts"
-# Created empty input file "data/inputs/01.txt"
 # Created empty example file "data/examples/01.txt"
+# Created empty input file "data/inputs/01.txt"
+# Created test file "src/solutions/01/01.test.ts"
+# Created solution file "src/solutions/01/01.ts"
 # ---
 # 🎄 Type `pnpm solve 1` to run your solution.
 ```
