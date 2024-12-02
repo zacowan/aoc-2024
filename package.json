@@ -16,6 +16,7 @@
     "@eslint/js": "^9.16.0",
     "@types/node": "^22.10.1",
     "eslint": "^9.16.0",
+    "handlebars": "^4.7.8",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "prettier": "^3.4.1",
@@ -29,5 +30,8 @@
     "*.{js,ts}": [
       "eslint --fix"
     ]
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
   }
 }
