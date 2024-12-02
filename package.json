@@ -4,8 +4,11 @@
   "type": "module",
   "description": "Advent of Code solutions for 2024.",
   "scripts": {
+    "lint": "eslint",
     "scaffold": "tsx scripts/scaffold.ts",
     "solve": "tsx scripts/solve.ts",
+    "test": "vitest --run",
+    "typecheck": "tsc",
     "prepare": "husky"
   },
   "keywords": [
