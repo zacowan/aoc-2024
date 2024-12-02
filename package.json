@@ -4,6 +4,7 @@
   "type": "module",
   "description": "Advent of Code solutions for 2024.",
   "scripts": {
+    "scaffold": "tsx scripts/scaffold.ts",
     "solve": "tsx scripts/solve.ts",
     "prepare": "husky"
   },
@@ -30,7 +31,7 @@
       "prettier --write --ignore-unknown"
     ],
     "*.{js,ts}": [
-      "eslint --fix"
+      "eslint"
     ]
   },
   "dependencies": {
