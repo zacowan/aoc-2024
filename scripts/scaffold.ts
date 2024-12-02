@@ -11,7 +11,6 @@ const argsSchema = z
   .array(z.string())
   .length(1)
   .transform((a) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const day = a[0]!;
     const paddedDay = day.padStart(2, "0");
     return { day: paddedDay };
