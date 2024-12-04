@@ -7,7 +7,7 @@ test("part 1", async () => {
   expect(partOne(input)).toEqual("2");
 });
 
-test.todo("part 2", async () => {
+test("part 2", async () => {
   const input = await readExample(2);
-  expect(partTwo(input)).toEqual("TODO");
+  expect(partTwo(input)).toEqual("4");
 });
