@@ -102,6 +102,61 @@ export const partOne: SolutionFn = (input) => {
     .toString();
 };
 
-export const partTwo: SolutionFn = () => {
-  return "-1";
+export const partTwo: SolutionFn = (input) => {
+  const { pageOrderRules, updates } = getData(input);
+
+  const pageOrderRulesMap = getPageOrderRulesMap(pageOrderRules);
+
+  const invalidUpdates: number[][] = [];
+
+  updates.forEach((update) => {
+    let isValidUpdate = true;
+    const updateOrder = new Map<number, number>();
+    update.forEach((num, i) => updateOrder.set(num, i));
+
+    update.forEach((num, i) => {
+      const numbersThatMustComeBefore = pageOrderRulesMap.get(num);
+
+      if (!numbersThatMustComeBefore) {
+        return;
+      }
+
+      numbersThatMustComeBefore.forEach((numThatComesBefore) => {
+        if (
+          updateOrder.get(numThatComesBefore) !== undefined &&
+          updateOrder.get(numThatComesBefore)! > i
+        ) {
+          isValidUpdate = false;
+        }
+      });
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- false positive
+    if (!isValidUpdate) {
+      invalidUpdates.push(update);
+    }
+  });
+
+  const sortedInvalidUpdates = invalidUpdates.map((update) => {
+    const updateOrder = new Map<number, number>();
+    update.forEach((num, i) => updateOrder.set(num, i));
+
+    update.sort((a, b) => {
+      const numbersThatMustComeBeforeB = pageOrderRulesMap.get(b);
+
+      if (numbersThatMustComeBeforeB?.includes(a)) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    return update;
+  });
+
+  return sortedInvalidUpdates
+    .reduce((acc, update) => {
+      return acc + update[Math.floor(update.length / 2)]!;
+    }, 0)
+    .toString();
 };
