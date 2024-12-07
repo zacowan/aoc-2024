@@ -20,6 +20,16 @@ describe("part 2", () => {
 
   test("example 3 - created, 2 numbers same at the end", async () => {
     const input = await readExample(2, 3);
-    expect(partTwo(input)).toEqual("2");
+    expect(partTwo(input)).toEqual("1");
+  });
+
+  test("example 4 - created, +-+-", async () => {
+    const input = await readExample(2, 4);
+    expect(partTwo(input)).toEqual("0");
+  });
+
+  test("example 5 - created, invalid first number", async () => {
+    const input = await readExample(2, 5);
+    expect(partTwo(input)).toEqual("1");
   });
 });

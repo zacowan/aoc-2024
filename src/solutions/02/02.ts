@@ -22,7 +22,6 @@ const checkIfDiffIsUnsafe = (diff: number, prevDiff?: number): boolean => {
 
 const validateLevelSafety = (level: number[]) => {
   let isSafe = true;
-  let invalidIndexPair: { left: number; right: number } | undefined;
   let prevDiff: number | undefined = undefined;
   for (let i = 0; i < level.length - 1; i++) {
     const curr = level[i]!;
@@ -31,10 +30,6 @@ const validateLevelSafety = (level: number[]) => {
 
     if (checkIfDiffIsUnsafe(diff, prevDiff)) {
       isSafe = false;
-      invalidIndexPair = {
-        left: i,
-        right: i + 1,
-      };
       break;
     }
 
@@ -43,7 +38,6 @@ const validateLevelSafety = (level: number[]) => {
 
   return {
     isSafe,
-    invalidIndexPair,
   };
 };
 
@@ -64,22 +58,18 @@ export const partOne: SolutionFn = (input) => {
 };
 
 const validateLevelSafetyWithSkips = (level: number[]): boolean => {
-  const { invalidIndexPair } = validateLevelSafety(level);
+  const { isSafe } = validateLevelSafety(level);
 
-  if (invalidIndexPair) {
-    const levelWithoutLeft = level.filter(
-      (_, i) => i !== invalidIndexPair.left,
-    );
-    const levelWithoutRight = level.filter(
-      (_, i) => i !== invalidIndexPair.right,
-    );
-
-    const { isSafe: isSafeSkippingLeft } =
-      validateLevelSafety(levelWithoutLeft);
-    const { isSafe: isSafeSkippingRight } =
-      validateLevelSafety(levelWithoutRight);
-
-    return isSafeSkippingLeft || isSafeSkippingRight;
+  if (!isSafe) {
+    // try removing each element individually and checking
+    const results: boolean[] = [];
+    for (let i = 0; i < level.length; i++) {
+      const { isSafe: filteredIsSafe } = validateLevelSafety(
+        level.filter((_, li) => li !== i),
+      );
+      results.push(filteredIsSafe);
+    }
+    return results.some(Boolean);
   }
 
   return true;
