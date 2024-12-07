@@ -99,7 +99,7 @@ export const partTwo: SolutionFn = (input) => {
         continue;
       }
 
-      const gridClone = [...grid];
+      const gridClone = structuredClone(grid);
       gridClone[obstructionI]![obstructionJ] = BLOCKED;
 
       let i = startRow;
